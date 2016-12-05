@@ -3,7 +3,7 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 
 var targetHarvesters = 2;
-var targetUpgraders = 2;
+var targetUpgraders = 3;
 var targetBuilders = 2;
 
 var totalHarvesters = 0;
@@ -33,15 +33,15 @@ module.exports.loop = function () {
 
     // Spawn new creeps to meet target values
     if(totalHarvesters < targetHarvesters) {
-        Game.spawns['Spawn1'].createCreep( [WORK, CARRY, MOVE], 'Harvester', {role: "harvester"});
-        totalHarvesters++;
-    }
+        Game.spawns['Spawn1'].createCreep( [WORK, CARRY, MOVE], 'Harvester' + Math.floor(Math.random() * 1024), {role: "harvester"});
+        return;
+    } else
     if(totalUpgraders < targetUpgraders) {
-        Game.spawns['Spawn1'].createCreep( [WORK, CARRY, MOVE], 'Upgrader', {role: "upgrader"});
-        totalUpgraders++;
-    }
+        Game.spawns['Spawn1'].createCreep( [WORK, CARRY, MOVE], 'Upgrader' + Math.floor(Math.random() * 1024), {role: "upgrader"});
+        return;
+    } else
     if(totalBuilders < targetBuilders) {
-        Game.spawns['Spawn1'].createCreep( [WORK, CARRY, MOVE], 'Builder', {role: "builder"});
-        totalBuilders++;
+        Game.spawns['Spawn1'].createCreep( [WORK, CARRY, MOVE], 'Builder' + Math.floor(Math.random() * 1024), {role: "builder"});
+        return;
     }
 }
