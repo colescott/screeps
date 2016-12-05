@@ -1,12 +1,13 @@
 module.exports = {
     spawn: {
-        builder: 2,
-        upgrader: 2,
-        harvester: 2
+        targetHarvesters: 2,
+        targetUpgraders: 5,
+        targetBuilders: 3,
     },
     spawn_types: {
         builder: [WORK, CARRY, CARRY, MOVE, MOVE],
         upgrader: [WORK, CARRY, CARRY, MOVE, MOVE],
         harvester: [WORK, CARRY, CARRY, MOVE, MOVE]
-    }
+    },
+    spawner_name: "Spawn1"
 };
