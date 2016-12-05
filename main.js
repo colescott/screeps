@@ -10,10 +10,14 @@ var totalHarvesters = 0;
 var totalUpgraders = 0;
 var totalBuilders = 0;
 
+var clear_memory = require('util.memory_clear');
+
 module.exports.loop = function () {
     totalHarvesters = 0;
     totalUpgraders = 0;
     totalBuilders = 0;
+
+    clear_memory();
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
