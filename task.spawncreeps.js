@@ -1,8 +1,10 @@
+const config = require('config');
+
 const {
     targetHarvesters,
     targetUpgraders,
     targetBuilders
-} = require('config').spawn;
+} = config.spawn;
 
 module.exports = () => {
     var totalHarvesters = 0;
@@ -22,13 +24,15 @@ module.exports = () => {
         }
     }
 
-    if(totalHarvesters < targetHarvesters) {
-        Game.spawns['Spawn1'].createCreep( [WORK, CARRY, CARRY, MOVE, MOVE], 'Harvester' + Math.floor(Math.random() * 1024), {role: "harvester"});
+    const spawner_name = 'Spawn1';
+
+    if(totalHarvesters < targetHarvesters && Game.spawns.spawner_name.canCreateCreep(config.spawn_types.harvester)) {
+        Game.spawns.spawner_name.createCreep(config.spawn_types.harvester, 'Harvester' + Math.floor(Math.random() * 1024), {role: "harvester"});
     } else
-    if(totalUpgraders < targetUpgraders) {
-        Game.spawns['Spawn1'].createCreep( [WORK, CARRY, CARRY, MOVE, MOVE], 'Upgrader' + Math.floor(Math.random() * 1024), {role: "upgrader"});
+    if(totalUpgraders < targetUpgraders && Game.spawns.spawner_name.canCreateCreep(config.spawn_types.upgrader)) {
+        Game.spawns.spawner_name.createCreep(config.spawn_types.upgrader, 'Upgrader' + Math.floor(Math.random() * 1024), {role: "upgrader"});
     } else
-    if(totalBuilders < targetBuilders) {
-        Game.spawns['Spawn1'].createCreep( [WORK, CARRY, CARRY, MOVE, MOVE], 'Builder' + Math.floor(Math.random() * 1024), {role: "builder"});
+    if(totalBuilders < targetBuilders && Game.spawns.spawner_name.canCreateCreep(config.spawn_types.builder)) {
+        Game.spawns.spawner_name.createCreep(config.spawn_types.builder, 'Builder' + Math.floor(Math.random() * 1024), {role: "builder"});
     }
 };
