@@ -1,6 +1,8 @@
-var targetHarvesters = 2;
-var targetUpgraders = 3;
-var targetBuilders = 2;
+const {
+    targetHarvesters,
+    targetUpgraders,
+    targetBuilders
+} = require('config').spawn;
 
 module.exports = () => {
     var totalHarvesters = 0;
