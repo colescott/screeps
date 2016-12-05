@@ -2,7 +2,11 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 
+var clear_memory = require('util.memory_clear');
+
 module.exports.loop = function () {
+
+    clear_memory();
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
