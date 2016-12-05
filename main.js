@@ -34,14 +34,11 @@ module.exports.loop = function () {
     // Spawn new creeps to meet target values
     if(totalHarvesters < targetHarvesters) {
         Game.spawns['Spawn1'].createCreep( [WORK, CARRY, CARRY, MOVE, MOVE], 'Harvester' + Math.floor(Math.random() * 1024), {role: "harvester"});
-        return;
     } else
     if(totalUpgraders < targetUpgraders) {
         Game.spawns['Spawn1'].createCreep( [WORK, CARRY, CARRY, MOVE, MOVE], 'Upgrader' + Math.floor(Math.random() * 1024), {role: "upgrader"});
-        return;
     } else
     if(totalBuilders < targetBuilders) {
         Game.spawns['Spawn1'].createCreep( [WORK, CARRY, CARRY, MOVE, MOVE], 'Builder' + Math.floor(Math.random() * 1024), {role: "builder"});
-        return;
     }
 }
