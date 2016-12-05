@@ -1,8 +1,8 @@
 module.exports = {
     spawn: {
-        targetBuilders: 3,
+        targetHarvesters: 2,
         targetUpgraders: 5,
-        targetHarvesters: 2
+        targetBuilders: 3,
     },
     spawn_types: {
         builder: [WORK, CARRY, CARRY, MOVE, MOVE],
