@@ -18,6 +18,19 @@ var roleBuilder = {
                 if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0]);
                 }
+            } else {
+                // Repair stuff if no construction sites found
+                var structures = creep.room.find(FIND_STRUCTURES);
+                for(var index in structures)
+                {
+                    var structure = structures[index];
+                    if(structure.hits < structure.hitsMax) {
+                        if(creep.repair(structure) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(structure);
+                        }
+                        break;
+                    }
+                }
             }
         }
         else {
