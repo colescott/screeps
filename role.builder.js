@@ -1,3 +1,10 @@
+const config = require('config');
+
+const {
+    source_id,
+    wallTarget
+} = config;
+
 var roleBuilder = {
 
     /** @param {Creep} creep **/
@@ -22,6 +29,15 @@ var roleBuilder = {
                 for(var index in structures)
                 {
                     var structure = structures[index];
+                    if(structure.structureType == STRUCTURE_WALL)
+                    {
+                        if(structure.hits < wallTarget) {
+                            if(creep.repair(structure) == ERR_NOT_IN_RANGE) {
+                                creep.moveTo(structure);
+                            }
+                            break;
+                        }
+                    } else
                     if(structure.hits < structure.hitsMax) {
                         if(creep.repair(structure) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(structure);
@@ -33,8 +49,8 @@ var roleBuilder = {
         }
         else {
             var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0]);
+            if(creep.harvest(sources[source_id]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[source_id]);
             }
         }
     }
