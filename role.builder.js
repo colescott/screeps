@@ -3,14 +3,15 @@ const config = require('config');
 const {
     source_id,
     spawner_name,
-    wallTarget
+    wallTarget,
+    regenAt
 } = config;
 
 var roleBuilder = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        if(creep.ticksToLive < 100) {
+        if(creep.ticksToLive < regenAt) {
           if(Game.spawns[spawner_name].renewCreep(creep) == ERR_NOT_IN_RANGE) {
             creep.moveTo(Game.spawns[spawner_name]);
           } else {
