@@ -12,4 +12,5 @@ module.exports = {
     spawner_name: "Spawn1",
     source_id: 0,
     wallTarget: 20000
+    regenAt: 200
 };
