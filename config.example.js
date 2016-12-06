@@ -11,6 +11,7 @@ module.exports = {
     },
     spawner_name: "Spawn1",
     source_id: 0,
-    wallTarget: 20000
+    wallTarget: 20000,
+    source_rotate: true,
     regenAt: 200
 };
