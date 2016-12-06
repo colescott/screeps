@@ -15,7 +15,7 @@ var roleUpgrader = {
     run: function(creep) {
         //Setup
         if (!creep.memory.setup) {
-            creep.memory.seup = true;
+            creep.memory.setup = true;
             roleUpgrader.setup(creep);
         }
         // Assuming it isn't fixing itself
