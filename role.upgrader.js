@@ -13,27 +13,45 @@ var roleUpgrader = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        if (!creep.memory.source) {
-            creep.memory.source = find_sources(creep);
+        //Setup
+        if (!creep.memory.setup) {
+            creep.memory.seup = true;
+            roleUpgrader.setup(creep);
         }
+        // Assuming it isn't fixing itself
         if(!creep.memory.renewing) {
             if(creep.memory.upgrading && creep.carry.energy == 0) {
-                creep.memory.source = find_sources(creep);
+                roleUpgrader.noEnergy(creep);
                 creep.memory.upgrading = false;
             }
             if(!creep.memory.upgrading && creep.carry.energy == creep.carryCapacity) {
+                roleUpgrader.taskMode(creep);
                 creep.memory.upgrading = true;
             }
             if(creep.memory.upgrading) {
-                if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(creep.room.controller);
-                }
+                roleUpgrader.doTask(creep);
             }
             else {
-                get_energy(creep);
+                roleUpgrader.noEnergy(creep);
             }
         }
-    }
+    },
+    setup: function(creep) {
+        creep.memory.source = find_sources(creep);
+    },
+    doTask: function(creep) {
+        const res = creep.upgradeController(creep.room.controller);
+        if(res == ERR_NOT_IN_RANGE) {
+            creep.moveTo(creep.room.controller);
+        }
+    },
+    noEnergy: function(creep) {
+        get_energy(creep);
+    },
+    noEnergy: function(creep) {
+        creep.memory.source = find_sources(creep);
+    },
+    taskMode: function(creep) {}
 };
 
 module.exports = roleUpgrader;
