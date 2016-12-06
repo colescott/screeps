@@ -9,5 +9,7 @@ module.exports = {
         upgrader: [WORK, CARRY, CARRY, MOVE, MOVE],
         harvester: [WORK, CARRY, CARRY, MOVE, MOVE]
     },
-    spawner_name: "Spawn1"
+    spawner_name: "Spawn1",
+    source_id: 0,
+    wallTarget: 20000
 };
