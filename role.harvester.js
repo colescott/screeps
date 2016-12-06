@@ -1,13 +1,21 @@
 const config = require('config');
 
 const {
-    source_id
+    source_id,
+    spawner_name
 } = config;
 
 var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
+        if(creep.ticksToLive < 100) {
+          if(Game.spawns[spawner_name].renewCreep(creep) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(Game.spawns[spawner_name]);
+          } else {
+            Game.spawns[spawner_name].renewCreep(creep);
+          }
+        } else {
         if(!creep.memory.harvesting && creep.carry.energy == 0) {
             creep.memory.harvesting = true;
         }
@@ -42,6 +50,7 @@ var roleHarvester = {
                 }
             }
         }
+      }
     }
 };
 
