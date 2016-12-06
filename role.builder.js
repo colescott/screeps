@@ -1,4 +1,6 @@
 const config = require('config');
+const get_energy = require('util.get_energy');
+const find_sources = require('util.find_sources');
 
 const {
     source_id,
@@ -9,8 +11,12 @@ var roleBuilder = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
+        if (!creep.memory.source) {
+            creep.memory.source = find_sources(creep);
+        }
         if(!creep.memory.renewing) {
           if(creep.memory.building && creep.carry.energy == 0) {
+              creep.memory.source = find_sources(creep);
               creep.memory.building = false;
           }
           if(!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
@@ -48,10 +54,7 @@ var roleBuilder = {
               }
           }
           else {
-              var sources = creep.room.find(FIND_SOURCES);
-              if(creep.harvest(sources[source_id]) == ERR_NOT_IN_RANGE) {
-                  creep.moveTo(sources[source_id]);
-              }
+                get_energy(creep);
           }
       }
     }
