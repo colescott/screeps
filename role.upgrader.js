@@ -21,7 +21,7 @@ var roleUpgrader = {
         // Assuming it isn't fixing itself
         if(!creep.memory.renewing) {
             if(creep.memory.upgrading && creep.carry.energy == 0) {
-                roleUpgrader.noEnergy(creep);
+                roleUpgrader.energyMode(creep);
                 creep.memory.upgrading = false;
             }
             if(!creep.memory.upgrading && creep.carry.energy == creep.carryCapacity) {
@@ -32,7 +32,7 @@ var roleUpgrader = {
                 roleUpgrader.doTask(creep);
             }
             else {
-                roleUpgrader.noEnergy(creep);
+                roleUpgrader.getEnergy(creep);
             }
         }
     },
@@ -45,10 +45,10 @@ var roleUpgrader = {
             creep.moveTo(creep.room.controller);
         }
     },
-    noEnergy: function(creep) {
+    getEnergy: function(creep) {
         get_energy(creep);
     },
-    noEnergy: function(creep) {
+    energyMode: function(creep) {
         creep.memory.source = find_sources(creep);
     },
     taskMode: function(creep) {}
