@@ -1,3 +1,4 @@
 module.exports = (creep) => {
-    return creep.room.find(FIND_SOURCES)[Math.floor(Math.random()*2)].id;
+    const sources = creep.room.find(FIND_SOURCES)
+    return sources[Math.floor(Math.random()*sources.length)].id;
 }
