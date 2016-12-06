@@ -2,9 +2,7 @@ const config = require('config');
 
 const {
     source_id,
-    spawner_name,
-    wallTarget,
-    regenAt
+    wallTarget
 } = config;
 
 var roleBuilder = {

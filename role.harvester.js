@@ -1,9 +1,7 @@
 const config = require('config');
 
 const {
-    source_id,
-    spawner_name,
-    regenAt
+    source_id
 } = config;
 
 var roleHarvester = {
