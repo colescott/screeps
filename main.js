@@ -5,6 +5,7 @@ var renew = require('util.renew');
 var towers = require('task.towers');
 
 module.exports.loop = function () {
+    PathFinder.use(true);
     clear_memory();
     spawn_creeps();
     renew();
