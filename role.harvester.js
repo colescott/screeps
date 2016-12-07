@@ -33,8 +33,11 @@ var roleHarvester = {
                         }
                 });
                 if(targets.length > 0) {
-                    if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(targets[0]);
+                    var target = Game.getObjectById(creep.memory.target);
+                    if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(target);
+                    } else if(creep.transfer(target, RESOURCE_ENERGY) != OK) {
+                        creep.memory.target = targets[0].id;
                     }
                 } else {
                     // If no tagets, fill energy then return to rally point
