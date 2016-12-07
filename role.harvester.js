@@ -50,4 +50,13 @@ var roleHarvester = {
     }
 };
 
-module.exports = roleHarvester;
+function RoleHarvester(creep) {
+    this.creep = creep;
+    this.memory = this.creep.memory;
+}
+
+RoleHarvester.prototype.run = function(){
+    roleHarvester.run(this.creep);
+}
+
+module.exports = RoleHarvester;

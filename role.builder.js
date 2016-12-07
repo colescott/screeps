@@ -61,4 +61,13 @@ var roleBuilder = {
     }
 };
 
-module.exports = roleBuilder;
+function RoleBuilder(creep) {
+    this.creep = creep;
+    this.memory = creep.memory;
+}
+
+RoleBuilder.prototype.run = function() {
+    roleBuilder.run(this.creep);
+}
+
+module.exports = RoleBuilder;
