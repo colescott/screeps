@@ -1,12 +1,16 @@
 const {
     regenAt,
-    spawner_name
+    spawner_name,
+    spawn_types
 } = require('config');
 
 module.exports = () => {
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        if(creep.ticksToLive < regenAt && (Game.spawns[spawner_name].energy > 50)) {
+        isProper(creep);
+        if(creep.ticksToLive < regenAt
+        && (Game.spawns[spawner_name].energy > 50)
+        && isProper(creep)) {
             creep.memory.renewing = true;
         }
         if((creep.ticksToLive > 1000)) {
@@ -21,5 +25,11 @@ module.exports = () => {
                 creep.memory.renewing = false;
             }
         }
+    }
+}
+
+var isProper = (creep) => {
+    if(creep.body.map(e => e.type).toLocaleString() == spawn_types[creep.memory.role].toLocaleString()) {
+        console.log(creep.name);
     }
 }
