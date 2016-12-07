@@ -8,6 +8,7 @@ const {
 module.exports = () => {
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
+        isProper(creep);
         if( creep.ticksToLive < regenAt
         && Game.spawns[spawner_name].energy > 50
         && isProper(creep) ){
@@ -29,7 +30,7 @@ module.exports = () => {
 }
 
 var isProper = (creep) => {
-    if(creep.body.map(e => e.type).toLocaleString() == spawn_types[creep.memory.role].toLocaleString()) {
+    if(creep.body.map(e => e.type).toString() == spawn_types[creep.memory.role].toString()) {
         return true;
     }
     if(!kill_bad) {
