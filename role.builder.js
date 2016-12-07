@@ -35,6 +35,7 @@ var roleBuilder = {
                   for(var index in structures)
                   {
                       var structure = structures[index];
+
                       if(structure.structureType == STRUCTURE_WALL || structure.structureType == STRUCTURE_RAMPART)
                       {
                           if(structure.hits < wallTarget) {
