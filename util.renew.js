@@ -1,3 +1,5 @@
+var lodash = require('lodash');
+
 const {
     regenAt,
     spawner_name,
@@ -30,7 +32,7 @@ module.exports = () => {
 }
 
 var isProper = (creep) => {
-    if(creep.body.map(e => e.type).toString() == spawn_types[creep.memory.role].toString()) {
+    if(lodash.isEqual(creep.body.map(e => e.type).sort(), spawn_types[creep.memory.role].sort())) {
         return true;
     }
     if(!kill_bad) {
