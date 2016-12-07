@@ -54,4 +54,13 @@ var roleUpgrader = {
     taskMode: function(creep) {}
 };
 
-module.exports = roleUpgrader;
+function RoleUpgrader(creep) {
+    this.creep = creep;
+    this.memory = creep.memory;
+}
+
+RoleUpgrader.prototype.run = function() {
+    roleUpgrader.run(this.creep);
+}
+
+module.exports = RoleUpgrader;
