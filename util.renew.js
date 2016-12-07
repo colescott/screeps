@@ -6,7 +6,7 @@ const {
 module.exports = () => {
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        if(creep.ticksToLive < regenAt && (Game.spawns[spawner_name].renewCreep(creep) != ERR_NOT_ENOUGH_ENERGY)) {
+        if(creep.ticksToLive < regenAt && (Game.spawns[spawner_name].energy > 50)) {
             creep.memory.renewing = true;
         }
         if((creep.ticksToLive > 1000)) {
