@@ -107,10 +107,13 @@ RoleBuilder.prototype.getEnergy = function getEnergy() {
 
 RoleBuilder.prototype.work = function work() {
     const target = Game.getObjectById(this.creep.memory.target);
+    console.log(target);
     if (target) {
         const res = this.creep.build(target);
         if (res == ERR_NOT_IN_RANGE) {
             this.creep.moveTo(target);
+        } else if (res == ERR_INVALID_TARGET) {
+            this.getNewTarget();
         }
     } else {
         // reset the work process
