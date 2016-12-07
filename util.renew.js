@@ -7,7 +7,6 @@ const {
 module.exports = () => {
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        isProper(creep);
         if(creep.ticksToLive < regenAt
         && (Game.spawns[spawner_name].energy > 50)
         && isProper(creep)) {
