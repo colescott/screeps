@@ -30,6 +30,7 @@ module.exports = () => {
 
 var isProper = (creep) => {
     if(creep.body.map(e => e.type).toLocaleString() == spawn_types[creep.memory.role].toLocaleString()) {
-        console.log(creep.name);
+        return true;
     }
+    return false;
 }
