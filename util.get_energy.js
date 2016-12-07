@@ -6,5 +6,7 @@ module.exports = (creep, log = false) => {
     }
     if(res == ERR_NOT_IN_RANGE) {
         creep.moveTo(source);
+    } else if(res == ERR_NOT_ENOUGH_ENERGY) {
+        creep.moveTo(source);
     }
 }
