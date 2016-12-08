@@ -2,14 +2,12 @@ class RoleBase {
     constructor(creep) {
         this.creep = creep;
         this.memory = creep.memory;
-    }
-    run() {
-        // setup
         if (!this.memory.setup) {
             this.memory.setup = true;
             this.setup();
         }
-
+    }
+    run() {
         // if its renewing, skip
         if (this.memory.renewing) {
             return;
