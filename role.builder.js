@@ -1,13 +1,7 @@
-const config = require('config');
-const get_energy = require('util.get_energy');
-const find_sources = require('util.find_sources');
-var RoleHarvester = require('role.harvester');
-const RoleBase = require('role.base');
-
-const {
-    source_id,
-    wallTarget
-} = config;
+const get_energy = require("util.get_energy");
+const find_sources = require("util.find_sources");
+var RoleHarvester = require("role.harvester");
+const RoleBase = require("role.base");
 
 class RoleBuilder extends RoleBase {
     constructor(creep) {
@@ -36,8 +30,8 @@ class RoleBuilder extends RoleBase {
     switchToWork() {}
     getNewTarget() {
         const targets = this.creep.room.find(FIND_CONSTRUCTION_SITES);
-        if (targets[0]) {
-            this.memory.target = targets[0].id;
+        if (targets[ 0 ]) {
+            this.memory.target = targets[ 0 ].id;
             return;
         }
         const manager = new RoleHarvester(this.creep);
