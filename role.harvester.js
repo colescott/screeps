@@ -91,7 +91,7 @@ class RoleHarvester extends RoleBase {
         }
     }
     switchToEnergy() {
-        creep.memory.source = find_sources(creep);
+        this.memory.source = find_sources(this.creep);
     }
     switchToWork() {}
 }
