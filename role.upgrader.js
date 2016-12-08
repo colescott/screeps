@@ -11,8 +11,11 @@ const {
 } = config;
 
 class RoleUpgrader extends RoleBase {
+    constructor(creep) {
+        super(creep);
+    }
     setup() {
-        this.creep.memory.source = find_sources(creep);
+        this.memory.source = find_sources(creep);
     }
     getEnergy() {
         get_energy(this.creep);

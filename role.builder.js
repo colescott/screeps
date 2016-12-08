@@ -20,7 +20,7 @@ class RoleBuilder extends RoleBase {
         get_energy(this.creep);
     }
     work() {
-        const target = Game.getObjectById(this.creep.memory.target);
+        const target = Game.getObjectById(this.memory.target);
         if (target) {
             const res = this.creep.build(target);
             if (res == ERR_NOT_IN_RANGE) {
