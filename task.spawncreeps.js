@@ -7,12 +7,12 @@ const {
 } = config.spawn;
 
 module.exports = () => {
-    var totalHarvesters = 0;
-    var totalUpgraders = 0;
-    var totalBuilders = 0;
+    let totalHarvesters = 0;
+    let totalUpgraders = 0;
+    let totalBuilders = 0;
 
-    for (var name in Game.creeps) {
-        var creep = Game.creeps[ name ];
+    for (let name in Game.creeps) {
+        let creep = Game.creeps[ name ];
         if (creep.memory.role == "harvester") {
             totalHarvesters++;
         }

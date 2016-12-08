@@ -14,11 +14,9 @@ module.exports = () => {
     } else {
         towers.forEach(tower => {
             var structures = tower.room.find(FIND_STRUCTURES);
-            for (var index in structures)
-            {
-                var structure = structures[ index ];
-                if (structure.structureType == STRUCTURE_WALL || structure.structureType == STRUCTURE_RAMPART)
-                {
+            for (let index in structures) {
+                let structure = structures[ index ];
+                if (structure.structureType == STRUCTURE_WALL || structure.structureType == STRUCTURE_RAMPART) {
                     if (structure.hits < wallTarget) {
                         tower.repair(structure);
                         break;

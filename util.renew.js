@@ -8,8 +8,8 @@ const {
 } = require("config");
 
 module.exports = () => {
-    for (var name in Game.creeps) {
-        var creep = Game.creeps[ name ];
+    for (let name in Game.creeps) {
+        let creep = Game.creeps[ name ];
         isProper(creep);
         if (creep.ticksToLive < regenAt
         && Game.spawns[ spawner_name ].energy > 50
@@ -20,7 +20,7 @@ module.exports = () => {
             creep.memory.renewing = false;
         }
         if (creep.memory.renewing) {
-            var error = Game.spawns[ spawner_name ].renewCreep(creep);
+            let error = Game.spawns[ spawner_name ].renewCreep(creep);
 
             if (error == ERR_NOT_IN_RANGE) {
                 creep.moveTo(Game.spawns[ spawner_name ]);
@@ -31,7 +31,7 @@ module.exports = () => {
     }
 };
 
-var isProper = (creep) => {
+let isProper = (creep) => {
     if (lodash.isEqual(creep.body.map(e => e.type).sort(), spawn_types[ creep.memory.role ].sort())) {
         return true;
     }

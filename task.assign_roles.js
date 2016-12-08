@@ -3,8 +3,8 @@ var RoleUpgrader = require("role.upgrader");
 var RoleBuilder = require("role.builder");
 
 module.exports = () => {
-    for (var name in Game.creeps) {
-        var creep = Game.creeps[ name ];
+    for (let name in Game.creeps) {
+        let creep = Game.creeps[ name ];
         if (creep.memory.role == "harvester") {
             const manager = new RoleHarvester(creep);
             manager.run();

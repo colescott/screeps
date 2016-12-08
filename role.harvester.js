@@ -1,18 +1,13 @@
 const get_energy = require("util.get_energy");
 const find_sources = require("util.find_sources");
-const config = require("config");
 const RoleBase = require("role.base");
-
-const {
-    source_id
-} = config;
 
 class RoleHarvester extends RoleBase {
     constructor(creep) {
         super(creep);
     }
     setup() {
-        this.memory.source = find_sources(creep);
+        this.memory.source = find_sources(this.creep);
     }
     getEnergy() {
         get_energy(this.creep);
@@ -26,7 +21,7 @@ class RoleHarvester extends RoleBase {
                 }
         });
         if (targets.length > 0) {
-            var target = Game.getObjectById(this.creep.memory.target);
+            let target = Game.getObjectById(this.creep.memory.target);
             if (this.creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 this.creep.moveTo(target);
             } else if (this.creep.transfer(target, RESOURCE_ENERGY) != OK) {
@@ -34,8 +29,7 @@ class RoleHarvester extends RoleBase {
             }
         } else {
             // If no tagets, fill energy then return to rally point
-            if (this.creep.carry.energy < this.creep.carryCapacity)
-            {
+            if (this.creep.carry.energy < this.creep.carryCapacity) {
                 this.memory.harvesting = true;
             } else {
                 this.creep.moveTo(Game.flags.harvester);
