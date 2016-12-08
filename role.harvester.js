@@ -11,6 +11,9 @@ class RoleHarvester extends RoleBase {
     constructor(creep) {
         super(creep);
     }
+    setup() {
+        this.memory.source = find_sources(creep);
+    }
     getEnergy() {
         get_energy(this.creep);
     }
@@ -27,13 +30,13 @@ class RoleHarvester extends RoleBase {
             if(this.creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 this.creep.moveTo(target);
             } else if(this.creep.transfer(target, RESOURCE_ENERGY) != OK) {
-                this.creep.memory.target = targets[0].id;
+                this.memory.target = targets[0].id;
             }
         } else {
             // If no tagets, fill energy then return to rally point
             if(this.creep.carry.energy < this.creep.carryCapacity)
             {
-                this.creep.memory.harvesting = true;
+                this.memory.harvesting = true;
             } else {
                 this.creep.moveTo(Game.flags.harvester);
             }
