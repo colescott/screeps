@@ -25,7 +25,7 @@ class RoleUpgrader extends RoleBase {
     }
     switchToWork() {}
     switchToEnergy() {
-        this.memory.source = find_sources(creep);
+        this.memory.source = find_sources(this.creep);
     }
 }
 
