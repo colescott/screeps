@@ -82,7 +82,6 @@ RoleBuilder.prototype.run = function run() {
     } else {
         this.work();
     }
-    console.log("status", this.memory.getting_energy, this.creep.carry.energy);
     // check if should switch task
     if (!this.memory.getting_energy && this.creep.carry.energy == 0) {
         // shoud start gathering energy
@@ -107,7 +106,6 @@ RoleBuilder.prototype.getEnergy = function getEnergy() {
 
 RoleBuilder.prototype.work = function work() {
     const target = Game.getObjectById(this.creep.memory.target);
-    console.log(target);
     if (target) {
         const res = this.creep.build(target);
         if (res == ERR_NOT_IN_RANGE) {
