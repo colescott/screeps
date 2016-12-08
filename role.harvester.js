@@ -1,6 +1,7 @@
 const get_energy = require('util.get_energy');
 const find_sources = require('util.find_sources');
 const config = require('config');
+const RoleBase = require('role.base');
 
 const {
     source_id
@@ -15,7 +16,7 @@ var roleHarvester = {
         }
         if(!creep.memory.renewing) {
             if(!creep.memory.harvesting && creep.carry.energy == 0) {
-                creep.memory.source = find_sources(creep);
+
                 creep.memory.harvesting = true;
             }
             if(creep.memory.harvesting && creep.carry.energy == creep.carryCapacity) {
@@ -55,13 +56,44 @@ var roleHarvester = {
     }
 };
 
-function RoleHarvester(creep) {
-    this.creep = creep;
-    this.memory = this.creep.memory;
-}
-
-RoleHarvester.prototype.run = function(){
-    roleHarvester.run(this.creep);
+class RoleHarvester extends RoleBase {
+    constructor(creep) {
+        super(creep);
+    }
+    getEnergy() {
+        get_energy(this.creep);
+    }
+    work() {
+        var targets = this.creep.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_EXTENSION ||
+                            structure.structureType == STRUCTURE_SPAWN ||
+                            structure.structureType == STRUCTURE_TOWER ||
+                            structure.structureType == STRUCTURE_CONTAINER ||
+                            structure.structureType == STRUCTURE_STORAGE) && structure.energy < structure.energyCapacity;
+                }
+        });
+        if(targets.length > 0) {
+            var target = Game.getObjectById(this.creep.memory.target);
+            if(this.creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                this.creep.moveTo(target);
+            } else if(this.creep.transfer(target, RESOURCE_ENERGY) != OK) {
+                this.creep.memory.target = targets[0].id;
+            }
+        } else {
+            // If no tagets, fill energy then return to rally point
+            if(this.creep.carry.energy < this.creep.carryCapacity)
+            {
+                this.creep.memory.harvesting = true;
+            } else {
+                this.creep.moveTo(Game.flags.harvester);
+            }
+        }
+    }
+    switchToEnergy() {
+        this.memory.source = find_sources(this.creep);
+    }
+    switchToWork() {}
 }
 
 module.exports = RoleHarvester;
