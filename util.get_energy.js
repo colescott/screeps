@@ -1,6 +1,12 @@
-module.exports = (creep) => {
-    const res = creep.harvest(Game.getObjectById(creep.memory.source));
+module.exports = (creep, log = false) => {
+    const source = Game.getObjectById(creep.memory.source);
+    const res = creep.harvest(source);
+    if (log) {
+        console.log(`Getting energy ${res} at ${source}`);
+    }
     if(res == ERR_NOT_IN_RANGE) {
-        creep.moveTo(Game.getObjectById(creep.memory.source));
+        creep.moveTo(source);
+    } else if(res == ERR_NOT_ENOUGH_ENERGY) {
+        creep.moveTo(source);
     }
 }

@@ -6,7 +6,8 @@ const {
 module.exports = (creep) => {
     const sources = creep.room.find(FIND_SOURCES)
     if (source_rotate) {
-        return sources[Math.floor(Math.random()*sources.length)].id;
+        const n = Math.floor(Math.random()*sources.length);
+        return sources[n].id;
     }
     return sources[source_id].id;
 }

@@ -13,5 +13,6 @@ module.exports = {
     source_id: 0,
     wallTarget: 20000,
     source_rotate: true,
-    regenAt: 200
+    regenAt: 200,
+    kill_bad: true
 };
