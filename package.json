@@ -1,0 +1,22 @@
+{
+  "name": "screeps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colescott/screeps.git"
+  },
+  "author": "Elias Lawson-Fox <eliaslfox@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/colescott/screeps/issues"
+  },
+  "homepage": "https://github.com/colescott/screeps#readme",
+  "devDependencies": {
+    "eslint": "3.11.1"
+  }
+}
