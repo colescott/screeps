@@ -1,5 +1,5 @@
 const config = require('config');
-countCreeps = require('util.count_creeps');
+const countCreeps = require('util.count_creeps');
 
 const {
     targetHarvesters,
