@@ -43,7 +43,7 @@ let isProper = (creep) => {
     }
     //Exceptions
     else if (!kill_bad
-    || countCreeps() < targetWorkers) {
+    || countCreeps('worker') < targetWorkers) {
         return true;
     }
     return false;

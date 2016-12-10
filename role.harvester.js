@@ -28,9 +28,6 @@ class RoleHarvester extends RoleBase {
             } else if (this.creep.transfer(target, RESOURCE_ENERGY) != OK) {
                 this.memory.target = targets[ 0 ].id;
             }
-        } else {
-            // If no tagets, act as an upgrader
-            new RoleUpgrader(this.creep).run();
         }
     }
     switchToEnergy() {

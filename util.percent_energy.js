@@ -2,7 +2,7 @@ const {
     spawner_name
 } = require("config");
 
-count = (type) => {
+module.exports = (type) => {
     var cur = 0;
     var cap = 0;
     if(type == 'spawn' || type == null) {
@@ -19,19 +19,4 @@ count = (type) => {
         }
     }
     return 100 * cur/cap;
-}
-
-module.exports = count;
-
-countTowers = () => {
-    var cur = 0;
-    var cap = 0;
-    var towers = Game.spawns[spawner_name].room.find(FIND_MY_STRUCTURES, {
-        filter: { structureType: STRUCTURE_TOWER }
-    });
-    for(name in towers) {
-        cur += towers[name].energy;
-        cap += towers[name].energyCapacity;
-    }
-    return {cur, cap};
 }
