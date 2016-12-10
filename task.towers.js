@@ -1,6 +1,6 @@
 const config = require("config");
 
-var {
+const {
     spawner_name,
     wallTarget
 } = config;
