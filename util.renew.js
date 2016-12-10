@@ -9,9 +9,7 @@ const {
     spawn
 } = require("config");
 const {
-    targetHarvesters,
-    targetUpgraders,
-    targetBuilders
+    targetWorkers
 } = spawn;
 
 
@@ -40,12 +38,12 @@ module.exports = () => {
 
 let isProper = (creep) => {
     //Checks the creep parts against the config option for creep parts
-    if (lodash.isEqual(creep.body.map(e => e.type).sort(), spawn_types[ creep.memory.role ].sort())) {
+    if (lodash.isEqual(creep.body.map(e => e.type).sort(), spawn_types[ 'worker' ].sort())) {
         return true;
     }
     //Exceptions
     else if (!kill_bad
-    || countCreeps() != targetBuilders+targetHarvesters+targetUpgraders) {
+    || countCreeps() < targetWorkers) {
         return true;
     }
     return false;

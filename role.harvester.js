@@ -1,6 +1,7 @@
 const get_energy = require("util.get_energy");
 const find_sources = require("util.find_sources");
 const RoleBase = require("role.base");
+const RoleUpgrader = require("role.upgrader");
 
 class RoleHarvester extends RoleBase {
     constructor(creep) {
@@ -28,12 +29,8 @@ class RoleHarvester extends RoleBase {
                 this.memory.target = targets[ 0 ].id;
             }
         } else {
-            // If no tagets, fill energy then return to rally point
-            if (this.creep.carry.energy < this.creep.carryCapacity) {
-                this.memory.harvesting = true;
-            } else {
-                this.creep.moveTo(Game.flags.harvester);
-            }
+            // If no tagets, act as an upgrader
+            new RoleUpgrader(this.creep).run();
         }
     }
     switchToEnergy() {
