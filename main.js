@@ -24,8 +24,10 @@ module.exports.loop = function() {
 };
 status = () => {
     const controller = Game.spawns[ config.spawner_name ].room.controller;
-    console.log(`Creeps: ${count_creeps()}/${config.spawn.targetWorkers}`);
-    console.log(`Energy: ${Math.round(energy())}%`);
-    console.log(`Room Controller: level ${controller.level}, ${Math.round(100 * controller.progress/controller.progressTotal)}% to next level`);
+    console.log(`<h4>   Status</h4>\
+    Creeps: ${count_creeps()}/${config.spawn.targetWorkers}
+    Energy: ${Math.round(energy())}%
+    Room Controller: level ${controller.level}, ${Math.round(100 * controller.progress/controller.progressTotal)}% to next level
+    `);
     return;
-}
+};
