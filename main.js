@@ -20,10 +20,18 @@ module.exports.loop = function() {
     assign_roles();
     towers();
     if(Game.time % 100 == 0) {
+        clearLog();
+    }
+    if(Game.time % 100 == 1) {
         assign_ids();
         status();
     }
 };
+
+clearLog = () => {
+    console.log("<script>angular.element(document.getElementsByClassName('fa fa-trash ng-scope')[0].parentNode).scope().Console.clear()</script>")
+};
+
 status = () => {
     const controller = Game.spawns[ config.spawner_name ].room.controller;
     console.log(`<h4>   Status</h4>\
