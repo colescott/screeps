@@ -5,9 +5,11 @@ const renew = require("util.renew");
 const towers = require("task.towers");
 const set_roles = require("task.set_roles");
 const assign_ids = require("task.assign_ids");
+
 const count_creeps = require("util.count_creeps");
 const energy = require("util.percent_energy");
 const config = require("config");
+
 
 module.exports.loop = function() {
     PathFinder.use(true);
@@ -30,4 +32,5 @@ status = () => {
     Room Controller: level ${controller.level}, ${Math.round(100 * controller.progress/controller.progressTotal)}% to next level
     `);
     return;
+
 };
