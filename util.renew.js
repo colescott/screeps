@@ -1,16 +1,21 @@
-var lodash = require("lodash");
+const lodash = require("lodash");
+const countCreeps = require("util.count_creeps");
 
 const {
     regenAt,
     spawner_name,
     spawn_types,
-    kill_bad
+    kill_bad,
+    spawn
 } = require("config");
+const {
+    targetWorkers
+} = spawn;
+
 
 module.exports = () => {
     for (let name in Game.creeps) {
         let creep = Game.creeps[ name ];
-        isProper(creep);
         if (creep.ticksToLive < regenAt
         && Game.spawns[ spawner_name ].energy > 50
         && isProper(creep)) {
@@ -32,10 +37,13 @@ module.exports = () => {
 };
 
 let isProper = (creep) => {
-    if (lodash.isEqual(creep.body.map(e => e.type).sort(), spawn_types[ creep.memory.role ].sort())) {
+    //Checks the creep parts against the config option for creep parts
+    if (lodash.isEqual(creep.body.map(e => e.type).sort(), spawn_types[ 'worker' ].sort())) {
         return true;
     }
-    if (!kill_bad) {
+    //Exceptions
+    else if (!kill_bad
+    || countCreeps('worker') < targetWorkers) {
         return true;
     }
     return false;
