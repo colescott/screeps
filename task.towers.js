@@ -13,11 +13,18 @@ module.exports = () => {
         towers.forEach(tower => tower.attack(hostiles[ 0 ]));
     } else {
         towers.forEach(tower => {
-            var structures = tower.room.find(FIND_STRUCTURES);
-            for (let index in structures) {
+            const structures = tower.room.find(FIND_STRUCTURES);
+            const creeps = Game.creeps;
+            for(let index in creeps) {
+                let creep = Game.creeps[ index ];
+                if(creep.hits < creep.hitsMax) {
+                    tower.heal(creep);
+                }
+            }
+            for(let index in structures) {
                 let structure = structures[ index ];
                 if (structure.structureType == STRUCTURE_WALL || structure.structureType == STRUCTURE_RAMPART) {
-                    if (structure.hits < wallTarget) {
+                    if (structure.hits < wallTarget && tower.energy >= 500) {
                         tower.repair(structure);
                         break;
                     }
